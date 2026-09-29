@@ -9,12 +9,18 @@ import jakartaImage from '@/assets/office-jakarta.jpg';
 import bandungImage from '@/assets/office-bandung.jpg';
 
 export const branches = [
-  { slug: 'bali', name: 'Bali', image: baliImage, region: 'Bali' },
-  { slug: 'jakarta', name: 'Jakarta', image: jakartaImage, region: 'DKI Jakarta' },
-  { slug: 'bandung', name: 'Bandung', image: bandungImage, region: 'Jawa Barat' },
-  { slug: 'lombok', name: 'Lombok', image: lombokImage, region: 'Nusa Tenggara Barat' },
+  { slug: 'bali', name: 'Bali', image: baliImage, region: 'Bali', wa: '08123456789' },
+  { slug: 'jakarta', name: 'Jakarta', image: jakartaImage, region: 'DKI Jakarta', wa: '08123456781' },
+  { slug: 'bandung', name: 'Bandung', image: bandungImage, region: 'Jawa Barat', wa: '08123456782' },
+  { slug: 'lombok', name: 'Lombok', image: lombokImage, region: 'Nusa Tenggara Barat', wa: '08123456783' },
 ] as const;
 export type Branch = (typeof branches)[number];
+
+export function waLink(branch: Branch, message?: string) {
+  const number = branch.wa.replace(/^0/, '62').replace(/\D/g, '');
+  const text = message ?? `Halo VOW ${branch.name}, saya ingin bertanya tentang layanan virtual office.`;
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
 
 export const services = [
   { title: 'Alamat bisnis', text: 'Alamat kantor untuk kebutuhan bisnis dan surat-menyurat perusahaan.' },
@@ -41,7 +47,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <div className="nav-actions"><Button asChild className="nav-contact"><a href="#kontak">Hubungi kami <ArrowRight size={16}/></a></Button><Button variant="outline" size="icon" className="mobile-menu" onClick={() => setOpen(!open)} aria-label={open ? 'Tutup menu' : 'Buka menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</Button></div>
     </div></header>
     <main>{children}</main>
-    <footer id="kontak" className="site-footer"><div className="wrap footer-grid"><div><Link to="/" className="brand-link"><Logo /></Link><p>Virtual office di Bali, Jakarta, Bandung, dan Lombok.</p></div><div><strong>Halaman</strong><Link to="/">Beranda</Link><Link to="/layanan">Layanan</Link>{branches.map(b => <Link key={b.slug} to={`/${b.slug}`}>{b.name}</Link>)}</div><div><strong>Kontak</strong><p>Informasi kontak dan nomor WhatsApp resmi VOW akan ditampilkan setelah tersedia.</p></div></div><div className="wrap footer-bottom">© {new Date().getFullYear()} VOW — Virtual Office Work Lombok. Semua hak dilindungi.</div></footer>
+    <footer id="kontak" className="site-footer"><div className="wrap footer-grid"><div><Link to="/" className="brand-link"><Logo /></Link><p>Virtual office di Bali, Jakarta, Bandung, dan Lombok.</p></div><div><strong>Halaman</strong><Link to="/">Beranda</Link><Link to="/layanan">Layanan</Link>{branches.map(b => <Link key={b.slug} to={`/${b.slug}`}>{b.name}</Link>)}</div><div><strong>Kontak</strong>{branches.map(b => <a key={b.slug} className="footer-wa" href={waLink(b)} target="_blank" rel="noopener noreferrer">{b.name} · {b.wa}</a>)}</div></div><div className="wrap footer-bottom">© {new Date().getFullYear()} VOW — Virtual Office Work Lombok. Semua hak dilindungi.</div></footer>
     <a className="floating-contact" href="#kontak" aria-label="Lihat informasi kontak"><MessageCircle size={21}/><span>Kontak</span></a>
   </>;
 }
