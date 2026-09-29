@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BaliRouteImport } from './routes/bali'
+import { Route as BandungRouteImport } from './routes/bandung'
+import { Route as JakartaRouteImport } from './routes/jakarta'
+import { Route as LayananRouteImport } from './routes/layanan'
+import { Route as LombokRouteImport } from './routes/lombok'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BaliRoute = BaliRouteImport.update({
+  id: '/bali',
+  path: '/bali',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BandungRoute = BandungRouteImport.update({
+  id: '/bandung',
+  path: '/bandung',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JakartaRoute = JakartaRouteImport.update({
+  id: '/jakarta',
+  path: '/jakarta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LayananRoute = LayananRouteImport.update({
+  id: '/layanan',
+  path: '/layanan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LombokRoute = LombokRouteImport.update({
+  id: '/lombok',
+  path: '/lombok',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bali': typeof BaliRoute
+  '/bandung': typeof BandungRoute
+  '/jakarta': typeof JakartaRoute
+  '/layanan': typeof LayananRoute
+  '/lombok': typeof LombokRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bali': typeof BaliRoute
+  '/bandung': typeof BandungRoute
+  '/jakarta': typeof JakartaRoute
+  '/layanan': typeof LayananRoute
+  '/lombok': typeof LombokRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bali': typeof BaliRoute
+  '/bandung': typeof BandungRoute
+  '/jakarta': typeof JakartaRoute
+  '/layanan': typeof LayananRoute
+  '/lombok': typeof LombokRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/bali' | '/bandung' | '/jakarta' | '/layanan' | '/lombok'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/bali' | '/bandung' | '/jakarta' | '/layanan' | '/lombok'
+  id:
+    | '__root__'
+    | '/'
+    | '/bali'
+    | '/bandung'
+    | '/jakarta'
+    | '/layanan'
+    | '/lombok'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BaliRoute: typeof BaliRoute
+  BandungRoute: typeof BandungRoute
+  JakartaRoute: typeof JakartaRoute
+  LayananRoute: typeof LayananRoute
+  LombokRoute: typeof LombokRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bali': {
+      id: '/bali'
+      path: '/bali'
+      fullPath: '/bali'
+      preLoaderRoute: typeof BaliRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bandung': {
+      id: '/bandung'
+      path: '/bandung'
+      fullPath: '/bandung'
+      preLoaderRoute: typeof BandungRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jakarta': {
+      id: '/jakarta'
+      path: '/jakarta'
+      fullPath: '/jakarta'
+      preLoaderRoute: typeof JakartaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/layanan': {
+      id: '/layanan'
+      path: '/layanan'
+      fullPath: '/layanan'
+      preLoaderRoute: typeof LayananRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lombok': {
+      id: '/lombok'
+      path: '/lombok'
+      fullPath: '/lombok'
+      preLoaderRoute: typeof LombokRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BaliRoute: BaliRoute,
+  BandungRoute: BandungRoute,
+  JakartaRoute: JakartaRoute,
+  LayananRoute: LayananRoute,
+  LombokRoute: LombokRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
