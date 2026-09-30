@@ -74,7 +74,11 @@
 .whatsapp-row > div { display: flex; flex-direction: column; min-width: 0; }
 .whatsapp-row strong { font-size: 15px; }
 .whatsapp-row span { color: var(--muted-foreground); font-size: 12px; }
-.whatsapp-row button { flex: none; min-width: 60px; }
+.whatsapp-row button,.whatsapp-row a { flex: none; min-width: 62px; text-decoration: none; }
+.branch-wa { color: var(--primary); font-weight: 800; text-decoration: none; }
+.branch-wa:hover { text-decoration: underline; }
+.branch-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.branch-ctas a { text-decoration: none; }
 .whatsapp-panel > p { border-top: 1px solid var(--border); padding-top: 12px; margin: 0; color: var(--muted-foreground); font-size: 11px; }
 .hero-photo-note { position: absolute; right: 24px; bottom: 18px; color: var(--hero-foreground); font-size: 11px; }
 .section { padding: 82px 0; }
