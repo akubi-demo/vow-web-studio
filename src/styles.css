@@ -54,6 +54,9 @@
 .nav-dropdown-menu { position: absolute; top: 100%; left: -17px; min-width: 145px; display: none; flex-direction: column; padding: 15px 17px 10px; background: var(--background); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 15px 30px oklch(0.2 0.04 255 / .09); }
 .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: flex; }
 .nav-dropdown-menu a { padding: 6px 0; }
+.lang-trigger { display: inline-flex; align-items: center; gap: 6px; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+.lang-option { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; padding: 6px 0; }
+.lang-option:hover, .lang-option.is-active { color: var(--primary); font-weight: 700; }
 .nav-actions { display: flex; align-items: center; }
 .nav-actions .nav-contact { height: 42px; font-size: 13px; border-radius: 5px; }
 .mobile-menu { display: none; }
