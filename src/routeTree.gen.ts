@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BaliRouteImport } from './routes/bali'
 import { Route as BandungRouteImport } from './routes/bandung'
 import { Route as JakartaRouteImport } from './routes/jakarta'
+import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananRouteImport } from './routes/layanan'
 import { Route as LombokRouteImport } from './routes/lombok'
 
@@ -36,6 +37,11 @@ const JakartaRoute = JakartaRouteImport.update({
   path: '/jakarta',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LayananRoute = LayananRouteImport.update({
   id: '/layanan',
   path: '/layanan',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/bali': typeof BaliRoute
   '/bandung': typeof BandungRoute
   '/jakarta': typeof JakartaRoute
+  '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
   '/lombok': typeof LombokRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/bali': typeof BaliRoute
   '/bandung': typeof BandungRoute
   '/jakarta': typeof JakartaRoute
+  '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
   '/lombok': typeof LombokRoute
 }
@@ -69,20 +77,24 @@ export interface FileRoutesById {
   '/bali': typeof BaliRoute
   '/bandung': typeof BandungRoute
   '/jakarta': typeof JakartaRoute
+  '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
   '/lombok': typeof LombokRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bali' | '/bandung' | '/jakarta' | '/layanan' | '/lombok'
+  fullPaths:
+    '/' | '/bali' | '/bandung' | '/jakarta' | '/kontak' | '/layanan' | '/lombok'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bali' | '/bandung' | '/jakarta' | '/layanan' | '/lombok'
+  to:
+    '/' | '/bali' | '/bandung' | '/jakarta' | '/kontak' | '/layanan' | '/lombok'
   id:
     | '__root__'
     | '/'
     | '/bali'
     | '/bandung'
     | '/jakarta'
+    | '/kontak'
     | '/layanan'
     | '/lombok'
   fileRoutesById: FileRoutesById
@@ -92,6 +104,7 @@ export interface RootRouteChildren {
   BaliRoute: typeof BaliRoute
   BandungRoute: typeof BandungRoute
   JakartaRoute: typeof JakartaRoute
+  KontakRoute: typeof KontakRoute
   LayananRoute: typeof LayananRoute
   LombokRoute: typeof LombokRoute
 }
@@ -126,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JakartaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/layanan': {
       id: '/layanan'
       path: '/layanan'
@@ -148,6 +168,7 @@ const rootRouteChildren: RootRouteChildren = {
   BaliRoute: BaliRoute,
   BandungRoute: BandungRoute,
   JakartaRoute: JakartaRoute,
+  KontakRoute: KontakRoute,
   LayananRoute: LayananRoute,
   LombokRoute: LombokRoute,
 }

@@ -10,4 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Preserve the uploaded virtual-office site's page hierarchy with distinct TanStack routes for home, services, and each city; shared layout and branch presentation live in components so navigation and styling remain consistent.
+- Keep contact as a distinct route and send validated enquiries through the selected branch's WhatsApp; this avoids collecting customer data without a configured backend.
 - Treat branch locations, phone numbers, operating hours, and generated imagery as unverified until real VOW information is supplied; this avoids presenting invented contact details or illustrations as actual offices.
