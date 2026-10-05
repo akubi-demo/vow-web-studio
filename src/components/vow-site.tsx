@@ -54,17 +54,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <Link to="/" onClick={() => setOpen(false)}>{t('Beranda', 'Home')}</Link>
         <Link to="/layanan" onClick={() => setOpen(false)}>{t('Layanan', 'Services')}</Link>
         <div className="nav-dropdown"><Link to="/" hash="cabang" onClick={() => setOpen(false)}>{t('Cabang', 'Branches')}</Link><div className="nav-dropdown-menu">{branches.map(b => <Link key={b.slug} to={`/${b.slug}`} onClick={() => setOpen(false)}>{b.name}</Link>)}</div></div>
-        <a href="#kontak" onClick={() => setOpen(false)}>{t('Kontak', 'Contact')}</a>
+        <Link to="/kontak" onClick={() => setOpen(false)}>{t('Kontak', 'Contact')}</Link>
         <div className="nav-dropdown"><button type="button" className="lang-trigger"><Globe size={15} aria-hidden="true" /> Language</button><div className="nav-dropdown-menu">
           <button type="button" className={`lang-option${lang === 'en' ? ' is-active' : ''}`} onClick={() => choose('en')}>English</button>
           <button type="button" className={`lang-option${lang === 'id' ? ' is-active' : ''}`} onClick={() => choose('id')}>Indonesia</button>
         </div></div>
       </nav>
-      <div className="nav-actions"><Button asChild className="nav-contact"><a href="#kontak">{t('Hubungi kami', 'Contact us')} <ArrowRight size={16}/></a></Button><Button variant="outline" size="icon" className="mobile-menu" onClick={() => setOpen(!open)} aria-label={open ? t('Tutup menu', 'Close menu') : t('Buka menu', 'Open menu')} aria-expanded={open}>{open ? <X /> : <Menu />}</Button></div>
+      <div className="nav-actions"><Button asChild className="nav-contact"><Link to="/kontak">{t('Hubungi kami', 'Contact us')} <ArrowRight size={16}/></Link></Button><Button variant="outline" size="icon" className="mobile-menu" onClick={() => setOpen(!open)} aria-label={open ? t('Tutup menu', 'Close menu') : t('Buka menu', 'Open menu')} aria-expanded={open}>{open ? <X /> : <Menu />}</Button></div>
     </div></header>
     <main>{children}</main>
-    <footer id="kontak" className="site-footer"><div className="wrap footer-grid"><div><Link to="/" className="brand-link"><Logo /></Link><p>{t('Virtual office di Bali, Jakarta, Bandung, dan Lombok.', 'Virtual offices in Bali, Jakarta, Bandung, and Lombok.')}</p></div><div><strong>{t('Halaman', 'Pages')}</strong><Link to="/">{t('Beranda', 'Home')}</Link><Link to="/layanan">{t('Layanan', 'Services')}</Link>{branches.map(b => <Link key={b.slug} to={`/${b.slug}`}>{b.name}</Link>)}</div><div><strong>{t('Kontak', 'Contact')}</strong>{branches.map(b => <a key={b.slug} className="footer-wa" href={waLink(b, lang)} target="_blank" rel="noopener noreferrer">{b.name} · {b.wa}</a>)}</div></div><div className="wrap footer-bottom">© {new Date().getFullYear()} VOW — Virtual Office Work Lombok. {t('Semua hak dilindungi.', 'All rights reserved.')}</div></footer>
-    <a className="floating-contact" href="#kontak" aria-label={t('Lihat informasi kontak', 'View contact information')}><MessageCircle size={21}/><span>{t('Kontak', 'Contact')}</span></a>
+    <footer id="kontak" className="site-footer"><div className="wrap footer-grid"><div><Link to="/" className="brand-link"><Logo /></Link><p>{t('Virtual office di Bali, Jakarta, Bandung, dan Lombok.', 'Virtual offices in Bali, Jakarta, Bandung, and Lombok.')}</p></div><div><strong>{t('Halaman', 'Pages')}</strong><Link to="/">{t('Beranda', 'Home')}</Link><Link to="/layanan">{t('Layanan', 'Services')}</Link><Link to="/kontak">{t('Kontak', 'Contact')}</Link>{branches.map(b => <Link key={b.slug} to={`/${b.slug}`}>{b.name}</Link>)}</div><div><strong>WhatsApp</strong>{branches.map(b => <a key={b.slug} className="footer-wa" href={waLink(b, lang)} target="_blank" rel="noopener noreferrer">{b.name} · {b.wa}</a>)}</div></div><div className="wrap footer-bottom">© {new Date().getFullYear()} VOW — Virtual Office Work Lombok. {t('Semua hak dilindungi.', 'All rights reserved.')}</div></footer>
+    <Link className="floating-contact" to="/kontak" aria-label={t('Buka halaman kontak', 'Open contact page')}><MessageCircle size={21}/><span>{t('Kontak', 'Contact')}</span></Link>
   </>;
 }
 
